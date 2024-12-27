@@ -1,46 +1,173 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background for the body */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #f0f0f0;
+    min-height: 100vh;
+    flex-direction: column;
+    animation: backgroundColorChange 6s ease infinite;
 }
 
 .container {
+    background: linear-gradient(145deg, #ffffff, #f1f1f1); /* Gradient background for container */
+    border-radius: 15px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 90%;
+    max-width: 650px;
     text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    animation: zoomIn 1s ease-out forwards;
 }
 
+/* Title */
+h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    animation: fadeUp 2s ease-out;
+    background: linear-gradient(135deg, #34b7f1, #2196f3); /* Gradient color for title */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Webcam Container */
 #webcam-container {
-    margin-bottom: 20px;
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(145deg, #e8e8e8, #d1d1d1); /* Gradient background for webcam area */
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 25px;
+    overflow: hidden;
+    animation: scaleIn 1.5s ease-in-out forwards;
 }
 
+/* Label Container */
 #label-container {
-    margin-bottom: 20px;
-    font-weight: bold;
+    margin-top: 15px;
+    color: #5f6368;
+    font-size: 1.3rem;
+    font-weight: 600;
+    opacity: 0;
+    animation: slideUp 2s 1.5s ease-out forwards;
 }
 
-button {
-    background-color: #4CAF50;
-    border: none;
+/* Button Styles */
+#markAttendance {
+    background: linear-gradient(135deg, #34b7f1, #2196f3); /* Gradient background for the button */
     color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
     cursor: pointer;
-    border-radius: 5px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: pulse 2s infinite;
+    transition: transform 0.3s ease;
 }
 
+#markAttendance:hover {
+    background: linear-gradient(135deg, #2196f3, #34b7f1); /* Hover effect with reverse gradient */
+    transform: scale(1.1);
+}
+
+/* Attendance List */
 #attendanceList {
     margin-top: 20px;
-    text-align: left;
+    padding: 15px;
+    background: linear-gradient(145deg, #fafafa, #e6e6e6); /* Gradient background for attendance list */
+    border-radius: 8px;
+    max-height: 180px;
+    overflow-y: auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    animation: slideInLeft 1.5s ease-out;
 }
 
+/* Keyframe Animations */
+@keyframes backgroundColorChange {
+    0% {
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    }
+    50% {
+        background: linear-gradient(135deg, #66b3ff, #ff66cc);
+    }
+    100% {
+        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
