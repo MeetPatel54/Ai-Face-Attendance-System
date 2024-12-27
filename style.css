@@ -1,173 +1,300 @@
-/* General Styles */
-* {
+:root {
+    --primary-color: #4a00e0;
+    --secondary-color: #8e2de2;
+    --text-color: #ffffff;
+    --background-color: #120038;
+    --card-background: rgba(255, 255, 255, 0.1);
+    --button-gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  }
+  
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-
-body {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Gradient background for the body */
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  body {
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    flex-direction: column;
-    animation: backgroundColorChange 6s ease infinite;
-}
-
-.container {
-    background: linear-gradient(145deg, #ffffff, #f1f1f1); /* Gradient background for container */
-    border-radius: 15px;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+  }
+  
+  .container {
+    background: var(--card-background);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     padding: 40px;
     width: 90%;
-    max-width: 650px;
+    max-width: 600px;
     text-align: center;
-    animation: zoomIn 1s ease-out forwards;
-}
-
-/* Title */
-h1 {
-    color: #333;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg,
+      var(--primary-color) 60deg,
+      transparent 120deg
+    );
+    animation: rotate 20s linear infinite;
+    z-index: -1;
+  }
+  
+  .container::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    background: var(--background-color);
+    border-radius: 16px;
+    z-index: -1;
+  }
+  
+  .title {
     font-size: 2.5rem;
     margin-bottom: 25px;
-    animation: fadeUp 2s ease-out;
-    background: linear-gradient(135deg, #34b7f1, #2196f3); /* Gradient color for title */
+    background: var(--button-gradient);
     -webkit-background-clip: text;
-    color: transparent;
-}
-
-/* Webcam Container */
-#webcam-container {
-    width: 100%;
-    height: 320px;
-    background: linear-gradient(145deg, #e8e8e8, #d1d1d1); /* Gradient background for webcam area */
-    border-radius: 10px;
+    -webkit-text-fill-color: transparent;
     position: relative;
-    margin-bottom: 25px;
+    display: inline-block;
+  }
+  
+  .title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background: var(--button-gradient);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s ease;
+  }
+  
+  .title:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  .webcam-container {
+    width: 100%;
+    height: 400px;
+    background: var(--card-background);
+    border-radius: 10px;
     overflow: hidden;
-    animation: scaleIn 1.5s ease-in-out forwards;
-}
-
-/* Label Container */
-#label-container {
+    margin-bottom: 25px;
+    position: relative;
+  }
+  
+  .webcam-container canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .label-container {
     margin-top: 15px;
-    color: #5f6368;
-    font-size: 1.3rem;
-    font-weight: 600;
-    opacity: 0;
-    animation: slideUp 2s 1.5s ease-out forwards;
-}
-
-/* Button Styles */
-#markAttendance {
-    background: linear-gradient(135deg, #34b7f1, #2196f3); /* Gradient background for the button */
-    color: white;
-    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: 300;
+  }
+  
+  .label-container div {
+    background: var(--card-background);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .label-container div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mark-attendance-btn {
+    background: var(--button-gradient);
+    color: var(--text-color);
+    padding: 12px 30px;
     border: none;
     border-radius: 50px;
     font-size: 1.1rem;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: pulse 2s infinite;
-    transition: transform 0.3s ease;
-}
-
-#markAttendance:hover {
-    background: linear-gradient(135deg, #2196f3, #34b7f1); /* Hover effect with reverse gradient */
-    transform: scale(1.1);
-}
-
-/* Attendance List */
-#attendanceList {
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .mark-attendance-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mark-attendance-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .mark-attendance-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: translateX(-100%);
+    transition: 0.6s;
+  }
+  
+  .mark-attendance-btn:hover::before {
+    transform: translateX(100%);
+  }
+  
+  .btn-text {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .btn-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: 0.3s;
+  }
+  
+  .mark-attendance-btn:hover .btn-icon {
+    opacity: 1;
+    right: 30px;
+  }
+  
+  .attendance-list {
     margin-top: 20px;
     padding: 15px;
-    background: linear-gradient(145deg, #fafafa, #e6e6e6); /* Gradient background for attendance list */
+    background: var(--card-background);
     border-radius: 8px;
     max-height: 180px;
     overflow-y: auto;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    animation: slideInLeft 1.5s ease-out;
-}
-
-/* Keyframe Animations */
-@keyframes backgroundColorChange {
+  }
+  
+  .attendance-list::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .attendance-list::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+  }
+  
+  .attendance-list div {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .attendance-list div:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  @keyframes rotate {
     0% {
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
     }
     50% {
-        background: linear-gradient(135deg, #66b3ff, #ff66cc);
+      transform: translateY(-20px);
     }
-    100% {
-        background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  }
+  
+  .floating-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .shape {
+    position: absolute;
+    background: var(--primary-color);
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 15s infinite;
+  }
+  
+  .shape:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    left: 10%;
+    top: 20%;
+  }
+  
+  .shape:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    right: 15%;
+    top: 40%;
+    animation-delay: 2s;
+  }
+  
+  .shape:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    left: 20%;
+    bottom: 20%;
+    animation-delay: 4s;
+  }
+  
+  .shape:nth-child(4) {
+    width: 50px;
+    height: 50px;
+    right: 10%;
+    bottom: 30%;
+    animation-delay: 6s;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
     }
-}
-
-@keyframes fadeUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
+  
+    .title {
+      font-size: 2rem;
     }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
+  
+    .webcam-container {
+      height: 250px;
     }
-}
-
-@keyframes zoomIn {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes scaleIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-@keyframes slideUp {
-    0% {
-        transform: translateY(10px);
-        opacity: 0;
-    }
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes slideInLeft {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
+  }
+  

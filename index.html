@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Image Attendance System</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>AI Image Attendance System</h1>
-        <div id="webcam-container"></div>
-        <div id="label-container"></div>
-        <button id="markAttendance">Mark Attendance</button>
-        <div id="attendanceList"></div>
+        <h1 class="title">AI Image Attendance System</h1>
+        <div class="webcam-container" id="webcam-container"></div>
+        <div class="label-container" id="label-container"></div>
+        <button id="markAttendance" class="mark-attendance-btn">
+            <span class="btn-text">Mark Attendance</span>
+            <span class="btn-icon">✓</span>
+        </button>
+        <div class="attendance-list" id="attendanceList"></div>
     </div>
+    <div class="particles"></div>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
     <script src="script.js"></script>
